@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import NavBar from './components/Navbar';
 import countries from './countries.json';
+import Navbar from './components/Navbar';
 import CountriesList from './components/CountriesList';
 import CountryDetails from './components/CountryDetails';
 import { Route } from 'react-router';
@@ -13,7 +13,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    console.log('component did mount');
+    console.log('App component did mount');
     this.setState({
       countries: countries,
     });
@@ -23,11 +23,11 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <NavBar />
+          <Navbar />
 
           <div className="container">
             <div className="row">
-              <CountriesList />
+              <CountriesList countries={this.state.countries} />
               <Route path="/:id" component={CountryDetails} exact />
             </div>
           </div>

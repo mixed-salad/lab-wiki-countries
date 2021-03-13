@@ -21,7 +21,7 @@ class CountryDetails extends Component {
 
   loadCountryDetails = () => {
     const country = countries.find(
-      (country) => country.cca3 === this.props.match.params.id
+      (item) => item.cca3 === this.props.match.params.id
     );
     this.setState({
       country: country,
@@ -30,11 +30,12 @@ class CountryDetails extends Component {
 
   render() {
     console.log('country details is rendering');
+
     if (this.state.country) {
       const { capital, name, area, borders } = this.state.country;
-
       return (
         <div className="col-7">
+          {this.props.match.pa}
           <h1>{name.official}</h1>
           <table className="table">
             <thead></thead>
