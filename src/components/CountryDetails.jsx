@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import countries from './../countries.json';
+// import countries from './../countries.json';
 import { Link } from 'react-router-dom';
 
 class CountryDetails extends Component {
@@ -20,8 +20,9 @@ class CountryDetails extends Component {
   }
 
   loadCountryDetails = () => {
+    const countries = this.props.countries;
     const country = countries.find(
-      (item) => item.cca3 === this.props.match.params.id
+      (item) => item.alpha3Code === this.props.match.params.id
     );
     this.setState({
       country: country,
@@ -35,8 +36,7 @@ class CountryDetails extends Component {
       const { capital, name, area, borders } = this.state.country;
       return (
         <div className="col-7">
-          {this.props.match.pa}
-          <h1>{name.official}</h1>
+          <h1>{name}</h1>
           <table className="table">
             <thead></thead>
             <tbody>
@@ -55,13 +55,13 @@ class CountryDetails extends Component {
                 <td>
                   <ul>
                     {borders.map((borderingCountry) => {
-                      const country = countries.find(
-                        (country) => country.cca3 === borderingCountry
+                      const country = this.props.countries.find(
+                        (country) => country.alpha3Code === borderingCountry
                       );
                       return (
-                        <li key={country.cca3}>
-                          <Link to={`/${country.cca3}`}>
-                            {country.name.official}
+                        <li key={country.alpha3Code}>
+                          <Link to={`/${country.alpha3Code}`}>
+                            {country.name}
                           </Link>
                         </li>
                       );

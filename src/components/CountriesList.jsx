@@ -10,6 +10,7 @@ class CountriesList extends Component {
   render() {
     const countries = this.props.countries;
     const listContainerStyle = { maxHeight: '90vh', overflow: 'scroll' };
+    const imgStyle = { maxHeight: '25px', marginRight: '.5em' };
     return (
       <div className="col-5" style={listContainerStyle}>
         <div className="list-group">
@@ -17,10 +18,12 @@ class CountriesList extends Component {
             return (
               <Link
                 className="list-group-item list-group-item-action"
-                key={country.cca3}
-                to={`/${country.cca3}`}
+                key={country.alpha3Code}
+                to={`/${country.alpha3Code}`}
               >
-                {country.flag} {country.name.official}
+                <img style={imgStyle} src={country.flag} alt={country.name} />
+                {/* {country.flag}  */}
+                {country.name}
               </Link>
             );
           })}
